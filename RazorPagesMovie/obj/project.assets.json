@@ -13124,11 +13124,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\j.evans\\source\\repos\\RazorPagesMovie\\RazorPagesMovie\\RazorPagesMovie.csproj",
+      "projectUniqueName": "C:\\Users\\j.evans\\source\\repos\\RazorMoviesDB\\RazorPagesMovie\\RazorPagesMovie.csproj",
       "projectName": "RazorPagesMovie",
-      "projectPath": "C:\\Users\\j.evans\\source\\repos\\RazorPagesMovie\\RazorPagesMovie\\RazorPagesMovie.csproj",
+      "projectPath": "C:\\Users\\j.evans\\source\\repos\\RazorMoviesDB\\RazorPagesMovie\\RazorPagesMovie.csproj",
       "packagesPath": "C:\\Users\\j.evans\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\j.evans\\source\\repos\\RazorPagesMovie\\RazorPagesMovie\\obj\\",
+      "outputPath": "C:\\Users\\j.evans\\source\\repos\\RazorMoviesDB\\RazorPagesMovie\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

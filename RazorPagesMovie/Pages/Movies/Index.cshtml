@@ -1,0 +1,113 @@
+﻿@page "{handler?}"
+@model RazorPagesMovie.Pages.Movies.IndexModel
+
+@{
+    ViewData["Title"] = "Movie Index";
+}
+
+<h2>Index</h2>
+<h3><a asp-page="Create">Add</a></h3>
+
+    <form>
+        <p>
+            <select asp-for="PageSize">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+            </select>
+
+            <select asp-for="MovieGenre" asp-items="Model.Genres">
+                <option value="">All</option>
+            </select>
+
+            Title: <input type="text" name="SearchString" asp-for="CurrentFilter" style="margin-bottom: -6px;" />
+            <input type="submit" value="Filter" asp-page-handler="" />
+            <input type="submit" value="Clear" asp-page-handler="Clear" asp-route-pageSize="@Model.PageSize" />
+        </p>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr class="row-header">
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.TitleSort" asp-route-currentFilter="@Model.CurrentFilter" asp-route-pageSize="@Model.PageSize">
+                        @Html.DisplayNameFor(model => model.Movie[0].Title)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.ReleaseSort" asp-route-currentFilter="@Model.CurrentFilter" asp-route-pageSize="@Model.PageSize">
+                        @Html.DisplayNameFor(model => model.Movie[0].ReleaseDate)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.GenreSort" asp-route-currentFilter="@Model.CurrentFilter" asp-route-pageSize="@Model.PageSize">
+                        @Html.DisplayNameFor(model => model.Movie[0].Genre)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort" asp-route-currentFilter="@Model.CurrentFilter" asp-route-pageSize="@Model.PageSize">
+                        @Html.DisplayNameFor(model => model.Movie[0].Price)
+                    </a>
+                </th>
+                <th>
+                    <a asp-page="./Index" asp-route-sortOrder="@Model.RatingSort" asp-route-currentFilter="@Model.CurrentFilter" asp-route-pageSize="@Model.PageSize">
+                        @Html.DisplayNameFor(model => model.Movie[0].Rating)
+                    </a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Movie)
+            {
+                var isAlternate = Model.Movie.IndexOf(item) % 2 == 0 ? "" : "row-alternate";
+
+                <tr class="@isAlternate">
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.ID">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReleaseDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td>
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr> }
+        </tbody>
+    </table>
+
+    @{
+        var prevDisabled = !Model.Movie.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.Movie.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.Movie.PageIndex - 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       asp-route-pageSize="@Model.PageSize"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.Movie.PageIndex + 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       asp-route-pageSize="@Model.PageSize"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>

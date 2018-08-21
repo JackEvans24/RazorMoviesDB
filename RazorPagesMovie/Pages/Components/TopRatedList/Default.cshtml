@@ -1,0 +1,21 @@
+﻿@model IEnumerable<RazorPagesMovie.Models.Movie>
+@{
+}
+
+<style>
+    a.top-rated-link {
+        display: inline-block;
+        width: 96%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>
+
+<div style="margin-left: 4%;">
+        <h3>Top Rated:</h3>
+        @foreach (var movie in Model)
+        {
+            <a class="top-rated-link" title="@movie.Title" asp-page="/Movies/Details" asp-route-id="@movie.ID">@movie.Title</a>
+        }
+</div>
